@@ -3,7 +3,7 @@ from API import generate_viton_output
 
 def viton_interface(person_image, cloth_image, output_dir, height, width, base_model_path,
                      resume_path, mixed_precision, num_inference_steps, guidance_scale, seed,
-                     repaint, concat_eval_results):
+                     repaint, concat_eval_results, cloth_type="upper"):
     output = generate_viton_output(
         person_image=person_image,
         cloth_image=cloth_image,
@@ -17,7 +17,8 @@ def viton_interface(person_image, cloth_image, output_dir, height, width, base_m
         guidance_scale=guidance_scale,
         seed=seed,
         repaint=repaint,
-        concat_eval_results=concat_eval_results
+        concat_eval_results=concat_eval_results,
+        cloth_type=cloth_type
     )
     return output
 
@@ -48,9 +49,11 @@ def main():
         with gr.Row():
             repaint = gr.Checkbox(value=False, label="Repaint")
             concat_eval_results = gr.Checkbox(value=True, label="Concatenate Evaluation Results")
+        
+        with gr.Row():
+            cloth_type = gr.Dropdown(choices=["upper", "lower", "overall", "inner", "outer"], label="Cloth Type", value="Upper")
 
         output_image = gr.Image(label="VITON Output")
-
         generate_button = gr.Button("Generate")
 
         generate_button.click(
@@ -58,7 +61,7 @@ def main():
             inputs=[
                 person_image, cloth_image, output_dir, height, width, base_model_path,
                 resume_path, mixed_precision, num_inference_steps, guidance_scale, seed,
-                repaint, concat_eval_results
+                repaint, concat_eval_results, cloth_type
             ],
             outputs=[output_image]
         )

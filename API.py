@@ -7,7 +7,7 @@ from model.pipeline import CatVTONPipeline
 from generate_mask import generate_mask
 
 
-def preprocess_images(person_image_path, cloth_image_path, height, width):
+def preprocess_images(person_image_path, cloth_image_path, height, width, cloth_type="upper"):
     vae_processor = VaeImageProcessor(vae_scale_factor=8)
     mask_processor = VaeImageProcessor(
         vae_scale_factor=8, do_normalize=False, do_binarize=True, do_convert_grayscale=True
@@ -18,7 +18,7 @@ def preprocess_images(person_image_path, cloth_image_path, height, width):
 
     person_image = Image.open(person_image_path)
     cloth_image = Image.open(cloth_image_path)
-    mask_image = Image.open(generate_mask(person_image_path, cloth_image_path, cloth_type="upper"))
+    mask_image = Image.open(generate_mask(person_image_path, cloth_image_path, cloth_type=cloth_type))
 
     person_processed = vae_processor.preprocess(person_image, height, width)[0]
     cloth_processed = vae_processor.preprocess(cloth_image, height, width)[0]
@@ -59,7 +59,7 @@ def to_pil_image(images):
 def generate_viton_output(
     person_image, cloth_image, output_dir, height, width, base_model_path, 
     resume_path, mixed_precision, num_inference_steps, guidance_scale, seed, 
-    repaint=False, concat_eval_results=False
+    repaint=False, concat_eval_results=False, cloth_type="upper"
 ):
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
@@ -80,7 +80,7 @@ def generate_viton_output(
 
     # Preprocess images
     person_processed, cloth_processed, mask_processed, person_image_obj, cloth_image_obj = preprocess_images(
-        person_image, cloth_image, height, width
+        person_image, cloth_image, height, width, cloth_type
     )
 
     generator = torch.Generator(device="cuda").manual_seed(seed)
