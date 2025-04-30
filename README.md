@@ -136,4 +136,37 @@ python inference_from_dir.py --person_image ./data/persons/ --cloth_image ./data
 | `--guidance_scale`       | Guidance scale for folder inference. Default: 2.5.          |
 
 
+## 🐳 Using with Docker
+
+You can also run the application using Docker, which is a quick and isolated way to get started without manually installing dependencies.
+
+### 📥 Step 1: Pull the Docker Image
+
+Download the latest Docker image from Docker Hub:
+
+```bash
+sudo docker pull devfahd/vton:latest
+```
+
+### 🚀 Step 2: Run the Docker Container
+
+Start the container with GPU access and port exposure:
+
+```bash
+sudo docker run -it --gpus all -p 8002:8002 devfahd/vton:latest
+```
+
+> ⚠️ Make sure you have [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html) installed and configured to enable GPU support.
+
+### 🌐 Step 3: Access the Web Interface
+
+Once the container is running, open your browser and go to:
+
+```
+http://localhost:8002
+```
+
+This will launch the Gradio interface where you can use the virtual try-on tool interactively.
+
+---
 Enjoy using the Virtual Try-On application! 🎉
