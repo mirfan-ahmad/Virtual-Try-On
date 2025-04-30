@@ -107,35 +107,6 @@ python inference_from_dir.py --person_image ./data/persons/ --cloth_image ./data
 ```
 
 ---
-
-## Command-Line Arguments
-
-### Required Arguments
-
-| Argument         | Description                         |
-|------------------|-------------------------------------|
-| `--person_image` | Path to the person image or folder. |
-| `--cloth_image`  | Path to the clothing image or folder. |
-| `--output_dir`   | Directory where output images will be saved. |
-
-### Optional Arguments
-
-| Argument                 | Description                                                  |
-|--------------------------|--------------------------------------------------------------|
-| `--cloth_type`           | Type of clothing: `upper`, `lower`, or `overall`.           |
-| `--mixed_precision`      | Mixed precision mode: `no`, `fp16`, or `bf16`.              |
-| `--allow_tf32`           | Enables TensorFloat-32 computation.                         |
-| `--concat_eval_results`  | Concatenate evaluation results into a single output.         |
-| `--repaint`              | Enable repainting for refined results.                      |
-| `--width`                | Image width for processing. Default: 512.                   |
-| `--height`               | Image height for processing. Default: 368.                  |
-| `--num_inference_steps`  | Number of inference steps. Default: 50.                     |
-| `--seed`                 | Seed for reproducibility. Default: 555.                     |
-| `--dataloader_num_workers` | Number of workers for data loading (folder inference only). |
-| `--batch_size`           | Batch size for folder inference. Default: 8.                |
-| `--guidance_scale`       | Guidance scale for folder inference. Default: 2.5.          |
-
-
 ## 🐳 Using with Docker
 
 You can also run the application using Docker, which is a quick and isolated way to get started without manually installing dependencies.
@@ -169,4 +140,33 @@ http://localhost:8002
 This will launch the Gradio interface where you can use the virtual try-on tool interactively.
 
 ---
+## Command-Line Arguments
+
+### Required Arguments
+
+| Argument         | Description                         |
+|------------------|-------------------------------------|
+| `--person_image` | Path to the person image or folder. |
+| `--cloth_image`  | Path to the clothing image or folder. |
+| `--output_dir`   | Directory where output images will be saved. |
+
+### Optional Arguments
+
+| Argument                 | Description                                                  |
+|--------------------------|--------------------------------------------------------------|
+| `--cloth_type`           | Type of clothing: `upper`, `lower`, or `overall`.           |
+| `--mixed_precision`      | Mixed precision mode: `no`, `fp16`, or `bf16`.              |
+| `--allow_tf32`           | Enables TensorFloat-32 computation.                         |
+| `--concat_eval_results`  | Concatenate evaluation results into a single output.         |
+| `--repaint`              | Enable repainting for refined results.                      |
+| `--width`                | Image width for processing. Default: 512.                   |
+| `--height`               | Image height for processing. Default: 368.                  |
+| `--num_inference_steps`  | Number of inference steps. Default: 50.                     |
+| `--seed`                 | Seed for reproducibility. Default: 555.                     |
+| `--dataloader_num_workers` | Number of workers for data loading (folder inference only). |
+| `--batch_size`           | Batch size for folder inference. Default: 8.                |
+| `--guidance_scale`       | Guidance scale for folder inference. Default: 2.5.          |
+
+---
+
 Enjoy using the Virtual Try-On application! 🎉
