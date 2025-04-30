@@ -13,6 +13,7 @@ COPY . .
 RUN pip install --upgrade pip
 RUN pip install torch==2.5.1+cu118 torchvision==0.20.1+cu118 torchaudio==2.5.1+cu118 --index-url https://download.pytorch.org/whl/cu118
 RUN pip install --no-cache-dir -r requirements.txt
+RUN python download_ckpts.py
 
 # Expose the port (your FastAPI runs on 8002)a
 EXPOSE 8002
